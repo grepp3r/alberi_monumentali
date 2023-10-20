@@ -29,8 +29,6 @@ var map = L.map('map').setView([45, 8], 9);
             '<br>quota: '+albero.geo_altitude+'')
           .openPopup();
     }
-L.tileLayer('http://localhost:5000/osm/{z}/{x}/{y}', {
-        //apikey="6170aad10dfd42a38d4d8c709a536f38",
-}).addTo(map);
+L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
 </script>
 </body>
