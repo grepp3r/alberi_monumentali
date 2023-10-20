@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Alberi monumentali</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+     crossorigin=""/>
+     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+         integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+         crossorigin=""></script>
+</head>
+<body>
+<div style="height: 700px" id="map"></div>
+<script type="text/javascript" src="alberi_monumentali.js"></script>
+<script>
+var map = L.map('map').setView([45, 8], 9);
+
+  console.log(alberi)
+  for (i = 0; i < alberi.length; i++){
+      albero = alberi[i]
+      L.marker([albero.lat, albero.lng]).addTo(map)
+        .bindPopup('<b>'+albero.n_com+'</b><br>'+
+            albero.n_sc +
+            '<br>circonferenza: '+albero.circ +
+            '<br>altezza: '+albero.h +
+            '<br>quota: '+albero.geo_altitude+'')
+          .openPopup();
+    }
+L.tileLayer('http://localhost:5000/osm/{z}/{x}/{y}', {
+        //apikey="6170aad10dfd42a38d4d8c709a536f38",
+}).addTo(map);
+</script>
+</body>
