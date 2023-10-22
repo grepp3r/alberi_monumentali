@@ -65,4 +65,5 @@ def export(xls_name, out_name):
 
 export('VI_agg_Piemonte247_76__4__corretto.xls', 'piemonte')
 export('VI_agg_Friuli468_1__14__corretto.xls', 'friuli')
+export('VI_agg_Veneto244_12__0__corretto.xls', 'veneto')
 

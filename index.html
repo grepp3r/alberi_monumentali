@@ -15,6 +15,7 @@
 <body>
 <div style="height: 700px" id="map"></div>
 <script type="text/javascript" src="alberi_monumentali_piemonte.js"></script>
+<script type="text/javascript" src="alberi_monumentali_veneto.js"></script>
 <script type="text/javascript" src="alberi_monumentali_friuli.js"></script>
 <script>
   function parse_alberi(nome, alberi, map){
@@ -37,6 +38,7 @@
 
   var layerControl = L.control.layers().addTo(map);
   parse_alberi('friuli', alberi_friuli, layerControl);
+  parse_alberi('veneto', alberi_veneto, layerControl);
   parse_alberi('piemonte', alberi_piemonte, layerControl);
 
 
