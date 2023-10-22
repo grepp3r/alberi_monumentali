@@ -56,11 +56,13 @@ def load_workbook(book):
     return json_list
 
 
-#book = xlrd.open_workbook('Elenco_Piemonte247__3__V_agg.xls')
-book = xlrd.open_workbook('VI_agg_Piemonte247_76__4__corretto.xls')
-json_list = load_workbook(book)
-book = xlrd.open_workbook('VI_agg_Friuli468_1__14__corretto.xls')
-json_list += load_workbook(book)
-with open('alberi_monumentali.js', 'w') as f:
-    f.write("alberi = "+json.dumps(json_list))
+def export(xls_name, out_name):
+    book = xlrd.open_workbook(xls_name)
+    json_list = load_workbook(book)
+    with open(f'alberi_monumentali_{out_name}.js', 'w') as f:
+        f.write(f"alberi_{out_name} = "+json.dumps(json_list))
+
+
+export('VI_agg_Piemonte247_76__4__corretto.xls', 'piemonte')
+export('VI_agg_Friuli468_1__14__corretto.xls', 'friuli')
 
