@@ -14,21 +14,32 @@
 </head>
 <body>
 <div style="height: 700px" id="map"></div>
-<script type="text/javascript" src="alberi_monumentali.js"></script>
+<script type="text/javascript" src="alberi_monumentali_piemonte.js"></script>
+<script type="text/javascript" src="alberi_monumentali_friuli.js"></script>
 <script>
-var map = L.map('map').setView([45, 8], 9);
-
-  //console.log(alberi)
-  for (i = 0; i < alberi.length; i++){
-      albero = alberi[i]
-      L.marker([albero.lat, albero.lng]).addTo(map)
-        .bindPopup('<b>'+albero.n_com+'</b><br>'+
-            albero.n_sc +
-            '<br>circonferenza: '+albero.circ +
-            '<br>altezza: '+albero.h +
-            '<br>quota: '+albero.geo_altitude+'')
-          .openPopup();
+  function parse_alberi(nome, alberi, map){
+      var markers = [];
+      for (i = 0; i < alberi.length; i++){
+          albero = alberi[i]
+          var marker = L.marker([albero.lat, albero.lng])
+            .bindPopup('<b>'+albero.n_com+'</b><br>'+
+                albero.n_sc +
+                '<br>circonferenza: '+albero.circ +
+                '<br>altezza: '+albero.h +
+                '<br>quota: '+albero.geo_altitude+'');
+          markers.push(marker);
+        }
+      var markers_layer = L.layerGroup(markers);
+      map.addOverlay(markers_layer, nome);
     }
-L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
+
+  var map = L.map('map').setView([45, 8], 9);
+
+  var layerControl = L.control.layers().addTo(map);
+  parse_alberi('friuli', alberi_friuli, layerControl);
+  parse_alberi('piemonte', alberi_piemonte, layerControl);
+
+
+  L.tileLayer('http://localhost:5000/osm/{z}/{x}/{y}', {}).addTo(map);
 </script>
 </body>
