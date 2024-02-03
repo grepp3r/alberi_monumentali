@@ -5,43 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Alberi monumentali</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
-     crossorigin=""/>
-     <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-         integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
-         crossorigin=""></script>
-</head>
-<body>
-<div style="height: 700px" id="map"></div>
-<script type="text/javascript" src="alberi_monumentali_piemonte.js"></script>
-<script type="text/javascript" src="alberi_monumentali_veneto.js"></script>
-<script type="text/javascript" src="alberi_monumentali_friuli.js"></script>
-<script>
-  function parse_alberi(nome, alberi, map){
-      var markers = [];
-      for (i = 0; i < alberi.length; i++){
-          albero = alberi[i]
-          var marker = L.marker([albero.lat, albero.lng])
-            .bindPopup('<b>'+albero.n_com+'</b><br>'+
-                albero.n_sc +
-                '<br>circonferenza: '+albero.circ +
-                '<br>altezza: '+albero.h +
-                '<br>quota: '+albero.geo_altitude+'');
-          markers.push(marker);
-        }
-      var markers_layer = L.layerGroup(markers);
-      map.addOverlay(markers_layer, nome);
-    }
-
-  var map = L.map('map').setView([45, 8], 9);
-
-  var layerControl = L.control.layers().addTo(map);
-  parse_alberi('friuli', alberi_friuli, layerControl);
-  parse_alberi('veneto', alberi_veneto, layerControl);
-  parse_alberi('piemonte', alberi_piemonte, layerControl);
-
-
-  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {}).addTo(map);
-</script>
-</body>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
+                           integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
+                           crossorigin=""/>
+    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+            integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+            crossorigin=""></script>
+  </head>
+  <body>
+    <div style="height: 700px" id="map"></div>
+    <script type="text/javascript" src="alberi_monumentali_piemonte.js"></script>
+    <script type="text/javascript" src="alberi_monumentali_veneto.js"></script>
+    <script type="text/javascript" src="alberi_monumentali_friuli.js"></script>
+    <script type="text/javascript" src="logics.js"></script>
+  </body>
